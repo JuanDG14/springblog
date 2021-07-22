@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess Check</title>
+</head>
+<body>
+<h1>he number guessed was : <span th:text="${num}"></span></h1>
+<h1>The random number was : <span th:text="${randomNum}"></span></h1>
+<h2 th:if="${check}">Congratulations you guessed right!!!!</h2>
+<h2 th:if="${!check}">That's the wrong number!!!!</h2>
+<h3><a href="/roll-dice">try again</a></h3>
+</body>
+</html>
