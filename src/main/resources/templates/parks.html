@@ -6,8 +6,10 @@
 </head>
 <body>
 
-<div th:each="park : ${parks}">
+<ul th:each="park : ${parks}">
+    <th:block th:unless="${parks.isEmpty()}">
     <li th:text="${park.name}"></li>
-</div>
+    </th:block>
+</ul>
 </body>
 </html>

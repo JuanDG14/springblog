@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:include="partials/styles.html :: styles"></th:block>
 </head>
 <body>
+<th:block th:replace="partials/navbar.html :: navbar"></th:block>
 <h1>This is the landing page.</h1>
+<th:block th:include="partials/script.html :: script"></th:block>
 </body>
 </html>
