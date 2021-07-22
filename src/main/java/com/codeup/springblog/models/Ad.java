@@ -10,7 +10,7 @@ public class Ad {
     private long id;
 
     @Column(nullable = false, length = 155)
-    private String tittle;
+    private String title;
 
     @Column(nullable = false)
     private String description;
@@ -20,7 +20,7 @@ public class Ad {
 
     public Ad(long id, String tittle, String description) {
         this.id = id;
-        this.tittle = tittle;
+        this.title = tittle;
         this.description = description;
     }
 
@@ -33,11 +33,11 @@ public class Ad {
     }
 
     public String getTittle() {
-        return tittle;
+        return title;
     }
 
     public void setTittle(String tittle) {
-        this.tittle = tittle;
+        this.title = tittle;
     }
 
     public String getDescription() {
