@@ -1,9 +1,12 @@
 package com.codeup.springblog.models;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
+        @Query("FROM Post a WHERE a.id = ?1")
         Post findById(long id);
 
-        Post save(Post post);
+        @Query("FROM Post a WHERE a.title LIKE %:term%")
+        Post findFirstByTitle(String term);
 }
