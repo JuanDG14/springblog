@@ -2,17 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Individual post</title>
+    <th:block th:include="partials/styles.html :: styles"></th:block>
 </head>
 <body>
-<main class="container">
-    <div class="card offwhite-body">
-        <div class="card-content">
-            <h3 class="card-title" th:text="${ad.title}" />
-            <p th:text="${ad.description}" class="i-like-paragraphs" />
-            <br />
-        </div>
-    </div>
-</main>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<h1>Individual post here</h1>
+<h3 th:text="${post.title}"></h3>
+<p th:text="${post.body}"></p>
+<p style="color: hotpink" th:text="${post.user.username}"/>
+<p style="color: hotpink" th:text="${post.user.email}"/>
+<form action="/posts/edit" method="get">
+    <button type="submit" name="editButton" th:value="${post.id}">Edit post</button>
+</form>
+<form action="/posts/delete" method="post">
+    <button type="submit" name="deleteButton" th:value="${post.id}">Delete post</button>
+</form>
+<footer th:include="partials/footer.html :: footer"></footer>
+<script th:include="partials/scripts.html :: scripts"></script>
 </body>
 </html>

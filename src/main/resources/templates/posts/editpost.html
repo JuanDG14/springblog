@@ -2,16 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit post</title>
+    <th:block th:include="partials/styles.html :: styles"></th:block>
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <form action="/posts/edit" method="post">
     <label for="title">Title</label>
     <input type="hidden" name="postId" th:value="${post.id}">
+    <input type="hidden" name="userId" th:value="${post.user.id}">
     <input type="text" id="title" name="title" th:value="${post.title}">
     <label for="body">Body</label>
     <textarea id="body" name="body" th:text="${post.body}" rows="4" cols="50"></textarea>
     <button type="submit">Submit edit</button>
 </form>
+<script th:include="partials/scripts.html :: scripts"></script>
 </body>
 </html>

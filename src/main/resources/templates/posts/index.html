@@ -2,27 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Welcome</title>
+    <th:block th:include="partials/styles.html :: styles"></th:block>
 </head>
 <body>
-<main class="container">
-    <div class="card head-card">
-        <div class="card-content">
-            <h4 class="card-title">Viewing All Ads</h4>
-            <p>Click any ad to view all of its content.</p>
-        </div>
-    </div>
-    <h2>Posts index page</h2>
-    <th:block th:each="post: ${posts}">
-        <h3 th:text="${post.title}"></h3>
-        <p th:text="${post.body}"></p>
-        <form action="/posts/delete" method="post">
-            <button type="submit" name="deleteButton" th:value="${post.id}">Delete post</button>
-        </form>
-        <form action="/posts/edit" method="get">
-            <button type="submit" name="editButton" th:value="${post.id}">Edit post</button>
-        </form>
-    </th:block>
-</main>
+<nav th:replace="partials/navbar.html :: navbar"/>
+<header th:include="partials/header.html :: header"/>
+<h2>Posts index page</h2>
+<th:block th:each="post: ${posts}">
+    <a th:href="@{/posts/{id}(id = ${post.id})}"><h3 th:text="${post.title}"/></a>
+    <p th:text="${post.body}"/>
+    <p style="color: hotpink" th:text="${post.user.username}"/>
+</th:block>
+<footer th:include="partials/footer.html :: footer"/>
+<script th:include="partials/scripts.html :: scripts"/>
 </body>
 </html>

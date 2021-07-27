@@ -19,7 +19,7 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Post() {
+    public Post(String title, String body, User user) {
     }
 
     public Post(long id, String title, String body, User user) {

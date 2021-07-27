@@ -2,6 +2,7 @@ package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.PostRepository;
+import com.codeup.springblog.models.User;
 import com.codeup.springblog.models.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,59 +18,51 @@ public class PostController {
     public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
         this.userDao = userDao;
-
     }
 
-//    @RequestMapping(path = "/posts", method = RequestMethod.GET)
     @GetMapping("/posts")
-    public String viewPost(Model model){
+    public String postsIndex(Model model) {
         model.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
 
-//    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
-    @GetMapping("/posts/{id}")
-    public String postId(@PathVariable long id, Model model){
-        model.addAttribute("post", postDao.findById(id));
-        return "posts/show";
-    }
-
-    @PostMapping("/posts/delete/{id}")
-    public String deletePost(@RequestParam("deleteButton") Long id){
+    @PostMapping("/posts/delete")
+    public String deletePost(@RequestParam("deleteButton") long id) {
         postDao.deleteById(id);
         return "redirect:/posts";
     }
 
     @GetMapping("/posts/edit")
-    public String editPost(@RequestParam("editButton") long id, Model model) {
+    public String editForm(@RequestParam("editButton") long id, Model model) {
         model.addAttribute("post", postDao.findById(id));
         return "posts/editpost";
     }
 
-    @PostMapping("/posts/edit/{id}")
+    @PostMapping("/posts/edit")
     public String editPost(@RequestParam("postId") long id, @RequestParam("title") String title, @RequestParam("body") String body) {
-        Post post = postDao.getById(id);
-        post.setTitle(title);
-        post.setBody(body);
-        postDao.save(post);
+        Post editPost = postDao.getById(id);
+        editPost.setTitle(title);
+        editPost.setBody(body);
+        postDao.save(editPost);
         return "redirect:/posts/" + id;
     }
 
-//    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
+    @GetMapping("/posts/{id}")
+    public String getPostById(@PathVariable long id, Model model) {
+        model.addAttribute("post", postDao.findById(id));
+        return "posts/show";
+    }
+
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String createForm(){
-        return "view the form for creating a post.";
+    public String getCreatePost() {
+        return "posts/createpost";
     }
 
-//    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
-     @PostMapping("/posts/create")
-    @ResponseBody
-    public String postCreate(){
-        return "create a new post.";
+    @PostMapping("/posts/create")
+    public String postCreatePost(@RequestParam String title, @RequestParam String body) {
+        User user = userDao.getById(1L);
+        Post post = new Post(title, body, user);
+        postDao.save(post);
+        return "redirect:/posts";
     }
-
-
-
-
 }

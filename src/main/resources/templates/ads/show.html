@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Individual ad</title>
+    <th:block th:include="partials/styles.html :: styles"></th:block>
+</head>
+<body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<h1>Individual ad here</h1>
+<h3 th:text="${ad.title}"/>
+<p th:text="${ad.description}"/>
+<p style="color: hotpink" th:text="${ad.user.username}"/>
+<div>
+        <span th:each="cat : ${ad.categories}">
+            | <span th:text="${cat.name}"/> |
+        </span>
+</div>
+<footer th:include="partials/footer.html :: footer"></footer>
+<script th:include="partials/scripts.html :: scripts"></script>
+</body>
+</html>
