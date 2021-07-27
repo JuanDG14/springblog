@@ -20,14 +20,14 @@ public class Ad {
     private AdImage adImage;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name="ads_categories",
-            joinColumns = {@JoinColumn(name="ad_id")},
-            inverseJoinColumns = {@JoinColumn(name="category_id")}
+            name = "ads_categories",
+            joinColumns = {@JoinColumn(name = "ad_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
     private List<Category> categories;
 
@@ -53,23 +53,18 @@ public class Ad {
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public AdImage getAdImage() {
         return adImage;
     }
-
     public void setAdImage(AdImage adImage) {
         this.adImage = adImage;
     }
