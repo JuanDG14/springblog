@@ -7,7 +7,7 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<header th:include="partials/header.html :: header"></header>
+<!--<header th:include="partials/header.html :: header"></header>-->
 <h2>Posts index page</h2>
 <th:block th:each="ad: ${ads}">
     <h3 th:text="${ad.title}"></h3>
@@ -19,7 +19,7 @@
         </span>
     </div>
 </th:block>
-<footer th:include="partials/footer.html :: footer"></footer>
-<script th:include="partials/scripts.html :: scripts"></script>
+<!--<footer th:include="partials/footer.html :: footer"></footer>-->
+<script th:include="partials/script.html :: script"></script>
 </body>
 </html>

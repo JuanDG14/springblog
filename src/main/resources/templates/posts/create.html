@@ -2,18 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
-    <th:block th:include="partials/styles.html :: styles"></th:block>
+    <title>Create post</title>
+    <th:block th:include="partials/styles.html :: styles"/>
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"/>
 <!--<header th:include="partials/header.html :: header"/>-->
-<h2>Posts index page</h2>
-<th:block th:each="post: ${posts}">
-    <a th:href="@{/posts/{id}(id = ${post.id})}"><h3 th:text="${post.title}"/></a>
-    <p th:text="${post.body}"/>
-    <p style="color: hotpink" th:text="${post.user.username}"/>
-</th:block>
+<form action="/posts/create" th:action="@{/posts/create}" method="post" th:object="${post}">
+    Title:
+    <input th:field="*{title}" />
+    <br/>
+    Description:
+    <input th:field="*{body}" />
+    <br/>
+    <input type="submit" />
+</form>
 <!--<footer th:include="partials/footer.html :: footer"/>-->
 <script th:include="partials/script.html :: script"/>
 </body>
