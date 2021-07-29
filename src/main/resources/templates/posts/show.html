@@ -10,14 +10,16 @@
 <h1>Individual post here</h1>
 <h3 th:text="${post.title}"></h3>
 <p th:text="${post.body}"></p>
-<p style="color: hotpink" th:text="${post.user.username}"/>
-<p style="color: hotpink" th:text="${post.user.email}"/>
-<form action="/posts/edit" method="get">
-    <button type="submit" name="editButton" th:value="${post.id}">Edit post</button>
-</form>
-<form action="/posts/delete" method="post">
-    <button type="submit" name="deleteButton" th:value="${post.id}">Delete post</button>
-</form>
+<p style="color: #002aff" th:text="${post.user.username}"/>
+<p style="color: #002aff" th:text="${post.user.email}"/>
+<div th:if="${isPostOwner}">
+    <form th:action="@{/posts/{id}/edit (id = ${post.id})}" method="get" th:object="${post}">
+        <button type="submit" name="editButton" th:value="{id}">Edit post</button>
+    </form>
+    <form action="/posts/delete" method="post">
+        <button type="submit" name="deleteButton" th:value="{id}">Delete post</button>
+    </form>
+</div>
 <!--<footer th:include="partials/footer.html :: footer"></footer>-->
 <script th:include="partials/script.html :: script"></script>
 </body>
