@@ -6,18 +6,22 @@
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
 <body>
-<nav th:replace="partials/navbar.html :: navbar"/>
+<th:block th:replace="partials/navbar.html :: navbar"/>
 <!--<header th:include="partials/header.html :: header"/>-->
 <form action="/posts/create" th:action="@{/posts/create}" method="post" th:object="${post}">
     Title:
-    <input th:field="*{title}" />
+    <label>
+        <input th:field="*{title}" />
+    </label>
     <br/>
     Description:
-    <input th:field="*{body}" />
+    <label>
+        <input th:field="*{body}" />
+    </label>
     <br/>
     <input type="submit" />
 </form>
 <!--<footer th:include="partials/footer.html :: footer"/>-->
-<script th:include="partials/script.html :: script"/>
+<th:block th:include="partials/script.html :: script"/>
 </body>
 </html>

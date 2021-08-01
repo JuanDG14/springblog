@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
-    <th:block th:include="partials/styles.html :: styles"></th:block>
+    <th:block th:include="partials/styles.html :: styles"/>
 </head>
 <body>
-<nav th:replace="partials/navbar.html :: navbar"></nav>
+<th:block th:replace="partials/navbar.html :: navbar"/>
 <!--<header th:include="partials/header.html :: header"></header>-->
 <h2>Posts index page</h2>
 <th:block th:each="ad: ${ads}">
@@ -15,11 +15,11 @@
     <p style="color: hotpink" th:text="${ad.user.username}"></p>
     <div>
         <span th:each="cat : ${ad.categories}">
-            | <span th:text="${cat.name}"/> |
+            | <span th:text="${cat.name}"></span> |
         </span>
     </div>
 </th:block>
 <!--<footer th:include="partials/footer.html :: footer"></footer>-->
-<script th:include="partials/script.html :: script"></script>
+<th:block th:include="partials/script.html :: script"/>
 </body>
 </html>

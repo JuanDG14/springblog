@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <th:block th:include="partials/styles.html :: styles"></th:block>
+    <th:block th:include="partials/styles.html :: styles"/>
 </head>
 <body>
-<nav th:replace="partials/navbar.html :: navbar"></nav>
+<th:block th:replace="partials/navbar.html :: navbar"/>
 <form action="/ads/create" th:action="@{/ads/create}" method="post" th:object="${ad}">
     Title:
-    <input th:field="*{title}" />
+    <label>
+        <input th:field="*{title}" />
+    </label>
     <br />
     Description:
-    <input th:field="*{description}" />
+    <label>
+        <input th:field="*{description}" />
+    </label>
     <br />
     <input type="submit" />
 </form>
 <!--<footer th:include="partials/footer.html :: footer"></footer>-->
-<script th:include="partials/script.html :: script"></script>
+<th:block th:include="partials/script.html :: script"/>
 </body>
 </html>
